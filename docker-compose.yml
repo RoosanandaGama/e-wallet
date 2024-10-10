@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres
+    environment:
+      POSTGRES_USER: ewallet_service
+      POSTGRES_PASSWORD: ewallet_password
+      POSTGRES_DB: ewallet_db
+    ports:
+      - "5432:5432"

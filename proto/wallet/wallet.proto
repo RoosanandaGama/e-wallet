@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+package wallet;
+
+option go_package = "e-wallet/proto/wallet";
+
+message TopUpRequest {
+    int32 user_id = 1;
+    float amount = 2;
+}
+
+message TopUpResponse {
+    string message = 1;
+}
+
+message TransferRequest {
+    int32 from_user_id = 1;
+    int32 to_user_id = 2;
+    float amount = 3;
+}
+
+message TransferResponse {
+    string message = 1;
+}
+
+message Transaction {
+    int32 id = 1;
+    float amount = 2;
+    string transaction_type = 3;
+    string created_at = 4;
+}
+
+message GetTransactionsRequest {
+    int32 user_id = 1;
+}
+
+message GetTransactionsResponse {
+    repeated Transaction transactions = 1;
+}
+
+service WalletService {
+    rpc TopUp(TopUpRequest) returns (TopUpResponse);
+    rpc Transfer(TransferRequest) returns (TransferResponse);
+    rpc GetTransactions(GetTransactionsRequest) returns (GetTransactionsResponse);
+}
